@@ -3,7 +3,7 @@ require 'httparty'
 class User
     include HTTParty
     base_uri 'https://gorest.co.in/public/v2'  #configuration of the common URL of requests
-    @@token = "b6940d842fbe608796537b5029ea23d08cd9669bac848410044be6eee0bb36bd" #define token
+    @@token = "your_token" #Define your token
 
     #Route for requests to be invoked easily
     def postUser(payload)
