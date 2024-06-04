@@ -1,10 +1,9 @@
 module DataCommons
     def generate_name
-        Faker::Name.name
-        return 
+        Faker::Name.name 
     end
 
-    def generate_email(name)
+    def generate_email
         Faker::Internet.email(name: generate_name, separators: ['+'])
     end
 

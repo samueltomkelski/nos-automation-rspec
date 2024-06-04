@@ -7,11 +7,19 @@
     status: 'inactive'
   code: 201
   message: 'Created'
-- title: CT0001 - Create a user successfully
+- title: CT0002 - Create a user with empty name
   payload:
-    name: <%= generate_name %>
+    name:
     email: <%= generate_email %>
     gender: <%= generate_gender %>
     status: 'active'
-  code: 201
-  message: 'Created'
+  code: 422
+  message: 'Unprocessable Entity'
+- title: CT0003 - Create a user with empty name
+  payload:
+    name: <%= generate_name %>
+    email:
+    gender: <%= generate_gender %>
+    status: 'active'
+  code: 422
+  message: 'Unprocessable Entity'

@@ -13,6 +13,9 @@ RSpec.configure do |config|
   include Request
   include DataCommons
 
+  config.color = true
+  config.formatter = :documentation
+
   #Load and process the YML file
   def load_yaml_with_methods(file_path)
     yaml_content = File.read(file_path)
@@ -22,7 +25,7 @@ RSpec.configure do |config|
 
   #Loads YAML data before running tests
   config.before(:suite) do
-    @user_data = load_yaml_with_methods('spec/data/user_data.yml')
+    @user_data = load_yaml_with_methods('spec/data/post_user_data.yml')
   end
 
   #RSpec default configuration
