@@ -1,0 +1,17 @@
+---
+- title: CT0001 - Create a user successfully
+  payload:
+    name: <%= generate_name %>
+    email: <%= generate_email %>
+    gender: <%= generate_gender %>
+    status: 'inactive'
+  code: 201
+  message: 'Created'
+- title: CT0001 - Create a user successfully
+  payload:
+    name: <%= generate_name %>
+    email: <%= generate_email %>
+    gender: <%= generate_gender %>
+    status: 'active'
+  code: 201
+  message: 'Created'

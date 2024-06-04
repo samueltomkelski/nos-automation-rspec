@@ -1,15 +1,41 @@
 require 'httparty'
 require 'httparty/request'
 require 'httparty/response/headers'
+require 'faker' #library to generate randon faker data
+require 'pry'   #gem to debug code
+require 'yaml'
+require 'erb'
 
 require_relative '../services/request_service.rb'
-
+require_relative './commons/data_commons.rb'
 
 RSpec.configure do |config|
   include Request
-  # rspec-expectations config goes here. You can use an alternate
-  # assertion/expectation library such as wrong or the stdlib/minitest
-  # assertions if you prefer.
+  include DataCommons
+
+  #Load and process the YML file
+  def load_yaml_with_methods(file_path)
+    yaml_content = File.read(file_path)
+    erb_content = ERB.new(yaml_content).result(binding)
+    YAML.safe_load(erb_content, permitted_classes: [Date, Time])
+  end
+
+  #Loads YAML data before running tests
+  config.before(:suite) do
+    @user_data = load_yaml_with_methods('spec/data/user_data.yml')
+  end
+
+  #RSpec default configuration
+  config.expect_with :rspec do |expectations|
+    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+  end
+
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
+  end
+
+  config.shared_context_metadata_behavior = :apply_to_host_groups
+
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
