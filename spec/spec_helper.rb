@@ -6,11 +6,9 @@ require 'pry'   #gem to debug code
 require 'yaml'
 require 'erb'
 
-require_relative '../services/request_service.rb'
 require_relative './commons/data_commons.rb'
 
 RSpec.configure do |config|
-  include Request
   include DataCommons
 
   config.color = true
